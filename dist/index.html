@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+</head>
+<body>
+    <header>Simple TODO</header>
+
+    <main>
+
+        <div class="folders-list"> 
+            <span class="folders-heading">My Folders</span>
+            <ul>
+                <li class="folder">
+                    <p>Today</p>
+                </li>
+                <li class="folder">
+                    <p>School</p>
+                </li>
+                <li class="folder">
+                    <p>Groceries</p>
+                </li>
+                <li class="folder">
+                    <p>Workout</p>
+                </li>
+            </ul>
+            <div class="create folder">
+                <form action="">
+                    <input type="text" class="create-folder input" placeholder="Create New Folder">
+                    <button class="create-folder-btn">+</button>  
+                </form>    
+            </div>
+        </div>
+
+        <div class="todo-list">
+
+            <div class="header">
+                <span class="current-folder">Today</span>
+                <p class="todo-count">3 tasks pending out of 4</p>
+            </div>
+
+            <div class="main">
+                <ul class="todos-list">
+                    <li>
+                        <input type="checkbox" id="todo1">
+                        <label for="todo1">Create folders to organize your todos</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="todo2">
+                        <label for="todo2">Create folders to organize your todos</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="todo3">
+                        <label for="todo3">Create folders to organize your todos</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="todo4">
+                        <label for="todo4">Create folders to organize your todos</label>
+                    </li>
+                </ul>
+
+                <div class="create todo">    
+                    <form action="">
+                        <input type="text" class="create-todo input" placeholder="Create New Task">
+                        <button class="create-todo-btn">+</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="delete">
+                <button class="delete tasks">Clear Completed Tasks</button>
+                <button class="delete folder">Delete Folder</button>
+            </div>
+        </div>
+    </main>
+
+    <footer></footer>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "todo-list",
+  "description": "",
+  "version": "1.0.0",
+  "main": "webpack.config.js",
+  "devDependencies": {
+    "css-loader": "^6.5.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  },
+  "scripts": {
+    "start": "webpack --mode=development --watch",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyyayesh/todo-list.git"
+  },
+  "keywords": [],
+  "author": "Ayesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heyyayesh/todo-list/issues"
+  },
+  "homepage": "https://github.com/heyyayesh/todo-list#readme"
+}
