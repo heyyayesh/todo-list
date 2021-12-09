@@ -1,0 +1,246 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace, sans-serif;
+}
+
+button{
+    cursor: pointer;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+header{
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    background: lightgray;
+    width: 100%;
+    padding: 0.5rem 1rem;
+}
+
+main{
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: space-between;
+    flex: 1;
+    padding: 1rem;
+}
+
+.folders-list{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.folders-list span{
+    font-size: 22px;
+    font-weight: 700;
+    padding: 0.5rem;
+    border-bottom: 2px solid black;
+}
+
+.folders-list ul{
+    list-style: circle;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.folders-list li{
+    padding: 0.2em;
+    border-radius: 0.1em;
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 200ms ease-in-out;
+}
+
+.folders-list li:hover{
+    opacity: 0.5;
+    transform: scale(1.05);
+}
+
+.folders-list .active{
+    font-weight: 700;
+    background: lightgray;
+}
+
+.create form{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.create form input{
+    padding: 0.2em;
+    flex: 1;
+    font-size: 16px;
+}
+
+.create form button{
+    background: lightgray;
+    padding: 5px;
+    font-size: inherit;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 2px;
+    transform: scale(1);
+    transition: transform 100ms ease-in-out;
+    font-size: 16px;
+}
+
+.create form button:hover{
+    transform: scale(1.05);
+    background: lightgreen;
+}
+
+.create form button:active{
+    transform: scale(0.99);
+}
+
+.todos-list{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    gap: 20px;
+}
+
+.todos-list .top{
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 0.8em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1em;
+}
+
+.todos-list .header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid;
+    padding: 0.5em;
+}
+
+.current-folder{
+    font-weight: 700;
+    font-size: 22px;
+    max-width: 70%;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.create.todo form{
+    width: 100%;
+}
+
+.main ul{
+    list-style: none;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.main li{
+    padding: 0.2em;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    gap: 10px;
+}
+
+label{
+    cursor: pointer;
+}
+
+label:hover{
+    opacity: 0.5;
+}
+
+.main li input{
+    margin-top: 5px;
+}
+
+.done{
+    text-decoration:line-through;
+    text-decoration-thickness: 2px;
+    opacity: 0.5;
+}
+
+.delete{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.delete button{
+    font-size: 16px;
+    padding: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background: lightgray;
+    transform: scale(1);
+    transition: transform 150ms ease-in-out;
+    border-radius: 5px;
+}
+
+.delete button:hover{
+    transform: scale(1.05);
+    background: lightcoral;
+}
+
+.delete button:active{
+    transform: scale(0.99);
+}
+
+footer{
+    width: 100%;
+    height: 2rem;
+    background: lightgray;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    /* opacity: 0.5; */
+    gap: 10px;
+}
+
+footer a{
+    text-decoration: none;
+    color: black;
+}
+
+footer a:hover{
+    color: blue;
+}
+
+@media screen and (max-width: 500px) {
+    main{
+        flex-direction: column;
+    }
+}
