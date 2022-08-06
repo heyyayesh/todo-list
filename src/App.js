@@ -1,6 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 } from 'uuid';
 import Todo from './components/todo/Todo';
+import { db } from './firebase';
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  onSnapshot,
+} from 'firebase/firestore';
 import {
   Wrapper,
   Container,
@@ -9,46 +17,33 @@ import {
   Button,
   EmptyMsg,
 } from './app.style';
+import { async } from '@firebase/util';
 
 function App() {
   const [isEmpty, setIsEmpty] = useState(false);
 
-  const [todos, setTodos] = useState([
-    {
-      id: v4(),
-      title: 'This is an example todo.',
-      isDone: false,
-    },
-    {
-      id: v4(),
-      title:
-        'Tap or hover on this todo and then tap the tick mark to complete it.',
-      isDone: false,
-    },
-    {
-      id: v4(),
-      title: 'Delete this todo.',
-      isDone: false,
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   const [todoText, setTodoText] = useState('');
+
+  useEffect(() => {
+    setIsEmpty(!todos.length);
+  }, [todos]);
 
   const handleChange = e => {
     setTodoText(e.target.value);
   };
 
-  const addTodo = () => {
+  // Create todos
+
+  const addTodo = async () => {
     if (todoText === '' || todoText === null) return;
 
-    setTodos([
-      ...todos,
-      {
-        id: v4(),
-        title: todoText,
-        isDone: false,
-      },
-    ]);
+    const docRef = await addDoc(collection(db, 'todos'), {
+      title: todoText,
+      isDone: false,
+    });
+    console.log('Document written with id' + docRef.id);
 
     setTodoText('');
   };
@@ -59,6 +54,22 @@ function App() {
     }
   };
 
+  // Read todos
+
+  useEffect(() => {
+    const q = query(collection(db, 'todos'));
+    const unsubscribe = onSnapshot(q, querySnapshot => {
+      let todosArr = [];
+      querySnapshot.forEach(doc => {
+        todosArr.push({ ...doc.data(), id: doc.id });
+      });
+      setTodos(todosArr);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Update todos
+
   const completeTodo = id => {
     setTodos(
       todos.map(todo => {
@@ -68,6 +79,8 @@ function App() {
     );
   };
 
+  // Delete todos
+
   const deleteTodo = id => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
@@ -76,7 +89,7 @@ function App() {
     <Wrapper>
       <Container>
         {isEmpty ? (
-          <EmptyMsg>Nalla, Berozgaar! Kuchh to karle!</EmptyMsg>
+          <EmptyMsg>Yay! You have completed all the tasks!</EmptyMsg>
         ) : (
           todos.map((todo, index) => (
             <Todo
