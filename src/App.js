@@ -5,9 +5,11 @@ import { db } from './firebase';
 import {
   collection,
   addDoc,
-  getDocs,
   query,
   onSnapshot,
+  updateDoc,
+  doc,
+  deleteDoc,
 } from 'firebase/firestore';
 import {
   Wrapper,
@@ -17,7 +19,6 @@ import {
   Button,
   EmptyMsg,
 } from './app.style';
-import { async } from '@firebase/util';
 
 function App() {
   const [isEmpty, setIsEmpty] = useState(false);
@@ -70,19 +71,16 @@ function App() {
 
   // Update todos
 
-  const completeTodo = id => {
-    setTodos(
-      todos.map(todo => {
-        if (todo.id !== id) return todo;
-        else return { ...todo, isDone: true };
-      })
-    );
+  const completeTodo = async id => {
+    await updateDoc(doc(db, 'todos', id), {
+      isDone: true,
+    });
   };
 
   // Delete todos
 
-  const deleteTodo = id => {
-    setTodos(todos.filter(todo => todo.id !== id));
+  const deleteTodo = async id => {
+    await deleteDoc(doc(db, 'todos', id));
   };
 
   return (
