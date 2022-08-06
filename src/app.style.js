@@ -43,3 +43,7 @@ export const Button = styled.button`
     transform: scale(0.9);
   }
 `;
+
+export const EmptyMsg = styled.h1`
+  font-family: sans-serif;
+`;

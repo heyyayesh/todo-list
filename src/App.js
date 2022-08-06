@@ -1,19 +1,34 @@
 import { useState } from 'react';
 import { v4 } from 'uuid';
 import Todo from './components/todo/Todo';
-import { Wrapper, Container, AddTodo, Input, Button } from './app.style';
+import {
+  Wrapper,
+  Container,
+  AddTodo,
+  Input,
+  Button,
+  EmptyMsg,
+} from './app.style';
 
 function App() {
+  const [isEmpty, setIsEmpty] = useState(false);
+
   const [todos, setTodos] = useState([
     {
       id: v4(),
-      title: 'This is a sample todo.',
+      title: 'This is an example todo.',
       isDone: false,
     },
     {
       id: v4(),
-      title: 'This is another todo.',
-      isDone: true,
+      title:
+        'Tap or hover on this todo and then tap the tick mark to complete it.',
+      isDone: false,
+    },
+    {
+      id: v4(),
+      title: 'Delete this todo.',
+      isDone: false,
     },
   ]);
 
@@ -60,17 +75,21 @@ function App() {
   return (
     <Wrapper>
       <Container>
-        {todos.map((todo, index) => (
-          <Todo
-            key={todo.id}
-            num={index}
-            title={todo.title}
-            id={todo.id}
-            isDone={todo.isDone}
-            completeTodo={completeTodo}
-            deleteTodo={deleteTodo}
-          />
-        ))}
+        {isEmpty ? (
+          <EmptyMsg>Nalla, Berozgaar! Kuchh to karle!</EmptyMsg>
+        ) : (
+          todos.map((todo, index) => (
+            <Todo
+              key={todo.id}
+              num={index}
+              title={todo.title}
+              id={todo.id}
+              isDone={todo.isDone}
+              completeTodo={completeTodo}
+              deleteTodo={deleteTodo}
+            />
+          ))
+        )}
       </Container>
 
       <AddTodo>
