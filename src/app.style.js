@@ -27,6 +27,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  width: 100%;
+  max-width: 700px;
 
   @media screen and (max-width: 450px) {
     padding: 16px;
@@ -64,4 +66,7 @@ export const EmptyMsg = styled.h1`
   font-family: sans-serif;
 `;
 
-export const Loading = styled(EmptyMsg)``;
+export const Loading = styled(EmptyMsg)`
+  text-align: center;
+  margin: auto;
+`;

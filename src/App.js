@@ -35,6 +35,8 @@ function App() {
 
   // Create todos
 
+  const time = new Date().getTime();
+
   const handleEnter = e => {
     if (e.key === 'Enter') {
       addTodo();
@@ -48,6 +50,7 @@ function App() {
     await addDoc(collection(db, 'todos'), {
       title: todoText,
       isDone: false,
+      createdAt: time,
     });
 
     console.log('added todo');
@@ -63,7 +66,7 @@ function App() {
       querySnapshot.forEach(doc => {
         todosArr.push({ ...doc.data(), id: doc.id });
       });
-      setTodos(todosArr);
+      setTodos(todosArr.sort((a, b) => b.createdAt - a.createdAt));
     });
     return () => unsubscribe();
   }, []);
