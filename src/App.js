@@ -46,14 +46,12 @@ function App() {
   const addTodo = async () => {
     if (todoText === '' || todoText === null) return;
 
-    console.log('adding todo');
     await addDoc(collection(db, 'todos'), {
       title: todoText,
       isDone: false,
       createdAt: time,
     });
 
-    console.log('added todo');
     setTodoText('');
   };
 

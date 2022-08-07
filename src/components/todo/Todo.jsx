@@ -31,7 +31,7 @@ function Todo({ id, title, isDone, completeTodo, deleteTodo }) {
             src={doneIcon}
             alt='done'
             style={{
-              width: '100%',
+              width: '25px',
               objectFit: 'cover',
             }}
           />
@@ -42,7 +42,7 @@ function Todo({ id, title, isDone, completeTodo, deleteTodo }) {
             src={delIcon}
             alt='delete'
             style={{
-              width: '100%',
+              width: '25px',
               objectFit: 'cover',
             }}
           />

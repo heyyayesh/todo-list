@@ -24,7 +24,7 @@ export const Controls = styled.div`
   grid-template-columns: 1fr 1fr;
   place-items: center;
   border-radius: 0 0 5px 5px;
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
   padding: 3px;
   grid-gap: 16px;
   transition: transform 200ms ease-in-out;
@@ -39,11 +39,13 @@ export const Controls = styled.div`
 `;
 
 export const Del = styled.button`
-  height: 25px;
-  width: 25px;
+  height: 30px;
+  width: 100%;
   cursor: pointer;
-  background-color: transparent;
+  background-color: lightgray;
   border: none;
+  padding: 2px;
+  border-radius: 5px;
 `;
 
 export const Done = styled(Del)``;
