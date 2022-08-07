@@ -6,8 +6,20 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 20px 20px 40px 20px;
-  gap: 50px;
   min-height: 100vh;
+
+  @media screen and (max-width: 450px) {
+    padding: 0px 0px 30px 0px;
+  }
+`;
+
+export const Header = styled.h1`
+  font-family: sans-serif;
+  margin: 20px;
+  background-color: lightgray;
+  width: 100%;
+  text-align: center;
+  padding: 8px;
 `;
 
 export const Container = styled.div`
@@ -15,6 +27,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+
+  @media screen and (max-width: 450px) {
+    padding: 16px;
+  }
 `;
 
 export const AddTodo = styled.div`

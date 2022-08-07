@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
   width: 100%;
-  gap: 10px;
+  gap: 16px;
   padding: 10px 8px;
+  flex-direction: column;
 `;
 
 export const Text = styled.p`
@@ -14,14 +14,40 @@ export const Text = styled.p`
   flex: 1;
   margin-right: 20px;
   text-decoration: ${({ isDone }) => (isDone ? 'line-through' : 'inherit')};
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+`;
+
+export const Controls = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  border-radius: 0 0 5px 5px;
+  background-color: lightgrey;
+  padding: 3px;
+  grid-gap: 16px;
+  transition: transform 200ms ease-in-out;
+  display: ${props => (props.isVisible ? 'grid' : 'none')};
+
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    display: ${props => (props.isVisible ? 'grid' : 'none')};
+    transform: ${props =>
+      props.isVisible ? 'translateY(0)' : 'translateY(-100%)'};
+  }
 `;
 
 export const Del = styled.button`
   height: 25px;
   width: 25px;
   cursor: pointer;
-  background: transparent;
+  background-color: transparent;
   border: none;
 `;
 
 export const Done = styled(Del)``;
+
+export const Checkbox = styled.input`
+  margin-top: 3px;
+`;

@@ -17,7 +17,7 @@ import {
   AddTodo,
   Input,
   Button,
-  EmptyMsg,
+  Header,
   Loading,
 } from './app.style';
 
@@ -77,7 +77,7 @@ function App() {
 
   const completeTodo = async id => {
     await updateDoc(doc(db, 'todos', id), {
-      isDone: true,
+      isDone: !todos.find(todo => todo.id === id).isDone,
     });
   };
 
@@ -89,15 +89,15 @@ function App() {
 
   return (
     <Wrapper>
+      <Header>Todo List</Header>
       {isAllDone && <Confetti />}
       <Container>
         {isEmpty ? (
           <Loading>You have nothing to do! 😳</Loading>
         ) : (
-          todos.map((todo, index) => (
+          todos.map(todo => (
             <Todo
               key={todo.id}
-              num={index}
               title={todo.title}
               id={todo.id}
               isDone={todo.isDone}

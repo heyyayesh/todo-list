@@ -1,45 +1,52 @@
 import React from 'react';
 import delIcon from '../../deleteIcon.png';
 import doneIcon from '../../done.png';
-import { Container, Text, Del, Done } from './todo.style';
+import { Container, Text, Controls, Del, Done, Checkbox } from './todo.style';
 
-function Todo({ id, title, isDone, num, completeTodo, deleteTodo }) {
-  const [delVisible, setDelVisible] = React.useState(false);
+function Todo({ id, title, isDone, completeTodo, deleteTodo }) {
+  const [visible, setVisible] = React.useState(false);
 
   const capitalizedTitle = title.slice(0, 1).toUpperCase() + title.slice(1);
 
   return (
     <Container
-      onMouseEnter={() => setDelVisible(true)}
-      onMouseLeave={() => setDelVisible(false)}
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+      onClick={() => setVisible(prev => !prev)}
     >
       <Text isDone={isDone}>
-        {num + 1}. {capitalizedTitle}
+        <Checkbox
+          type='checkbox'
+          checked={isDone}
+          onClick={() => completeTodo(id)}
+          readOnly
+        />
+        {capitalizedTitle}
       </Text>
 
-      <Done onClick={() => completeTodo(id)}>
-        <img
-          src={doneIcon}
-          alt='done'
-          style={{
-            width: '100%',
-            objectFit: 'cover',
-            display: delVisible && !isDone ? 'block' : 'none',
-          }}
-        />
-      </Done>
+      <Controls isVisible={visible} onClick={() => setVisible(prev => !prev)}>
+        <Done onClick={() => completeTodo(id)} isVisible={visible}>
+          <img
+            src={doneIcon}
+            alt='done'
+            style={{
+              width: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        </Done>
 
-      <Del onClick={() => deleteTodo(id)}>
-        <img
-          src={delIcon}
-          alt='delete'
-          style={{
-            width: '100%',
-            objectFit: 'cover',
-            display: delVisible ? 'block' : 'none',
-          }}
-        />
-      </Del>
+        <Del onClick={() => deleteTodo(id)}>
+          <img
+            src={delIcon}
+            alt='delete'
+            style={{
+              width: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        </Del>
+      </Controls>
     </Container>
   );
 }
