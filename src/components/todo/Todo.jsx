@@ -6,13 +6,15 @@ import { Container, Text, Del, Done } from './todo.style';
 function Todo({ id, title, isDone, num, completeTodo, deleteTodo }) {
   const [delVisible, setDelVisible] = React.useState(false);
 
+  const capitalizedTitle = title.slice(0, 1).toUpperCase() + title.slice(1);
+
   return (
     <Container
       onMouseEnter={() => setDelVisible(true)}
       onMouseLeave={() => setDelVisible(false)}
     >
       <Text isDone={isDone}>
-        {num + 1}. {title}
+        {num + 1}. {capitalizedTitle}
       </Text>
 
       <Done onClick={() => completeTodo(id)}>

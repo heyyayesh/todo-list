@@ -35,21 +35,23 @@ function App() {
 
   // Create todos
 
+  const handleEnter = e => {
+    if (e.key === 'Enter') {
+      addTodo();
+    }
+  };
+
   const addTodo = async () => {
     if (todoText === '' || todoText === null) return;
 
+    console.log('adding todo');
     await addDoc(collection(db, 'todos'), {
       title: todoText,
       isDone: false,
     });
 
+    console.log('added todo');
     setTodoText('');
-  };
-
-  const handleEnter = e => {
-    if (e.key === 'Enter') {
-      addTodo();
-    }
   };
 
   // Read todos
@@ -68,7 +70,7 @@ function App() {
 
   useEffect(() => {
     setIsEmpty(!todos.length);
-    setIsAllDone(todos.every(todo => todo.isDone));
+    setIsAllDone(!!todos.length && todos.every(todo => todo.isDone));
   }, [todos]);
 
   // Update todos
