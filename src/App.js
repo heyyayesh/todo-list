@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { v4 } from 'uuid';
 import Todo from './components/todo/Todo';
 import { db } from './firebase';
+import Confetti from 'react-confetti';
 import {
   collection,
   addDoc,
@@ -18,18 +18,16 @@ import {
   Input,
   Button,
   EmptyMsg,
+  Loading,
 } from './app.style';
 
 function App() {
+  const [isAllDone, setIsAllDone] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
 
   const [todos, setTodos] = useState([]);
 
   const [todoText, setTodoText] = useState('');
-
-  useEffect(() => {
-    setIsEmpty(!todos.length);
-  }, [todos]);
 
   const handleChange = e => {
     setTodoText(e.target.value);
@@ -40,11 +38,10 @@ function App() {
   const addTodo = async () => {
     if (todoText === '' || todoText === null) return;
 
-    const docRef = await addDoc(collection(db, 'todos'), {
+    await addDoc(collection(db, 'todos'), {
       title: todoText,
       isDone: false,
     });
-    console.log('Document written with id' + docRef.id);
 
     setTodoText('');
   };
@@ -69,6 +66,11 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    setIsEmpty(!todos.length);
+    setIsAllDone(todos.every(todo => todo.isDone));
+  }, [todos]);
+
   // Update todos
 
   const completeTodo = async id => {
@@ -85,9 +87,10 @@ function App() {
 
   return (
     <Wrapper>
+      {isAllDone && <Confetti />}
       <Container>
         {isEmpty ? (
-          <EmptyMsg>Yay! You have completed all the tasks!</EmptyMsg>
+          <Loading>You have nothing to do! 😳</Loading>
         ) : (
           todos.map((todo, index) => (
             <Todo

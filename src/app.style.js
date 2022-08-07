@@ -47,3 +47,5 @@ export const Button = styled.button`
 export const EmptyMsg = styled.h1`
   font-family: sans-serif;
 `;
+
+export const Loading = styled(EmptyMsg)``;
