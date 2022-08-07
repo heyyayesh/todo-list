@@ -12,7 +12,8 @@ function Todo({ id, title, isDone, completeTodo, deleteTodo }) {
     <Container
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
-      onClick={() => setVisible(prev => !prev)}
+      onFocus={() => setVisible(true)}
+      onBlur={() => setVisible(false)}
     >
       <Text isDone={isDone}>
         <Checkbox
