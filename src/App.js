@@ -24,14 +24,25 @@ import {
 function App() {
   const [isAllDone, setIsAllDone] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-
   const [todos, setTodos] = useState([]);
-
   const [todoText, setTodoText] = useState('');
+  const [background, setBackground] = useState('');
 
   const handleChange = e => {
     setTodoText(e.target.value);
   };
+
+  // Fetch background image from Bing Image of the Day
+
+  useEffect(() => {
+    async function fetchImg() {
+      const response = await fetch('https://bing.biturl.top/');
+      const data = await response.json();
+      setBackground(data.url);
+    }
+
+    fetchImg();
+  }, []);
 
   // Create todos
 
@@ -89,7 +100,7 @@ function App() {
   };
 
   return (
-    <Wrapper>
+    <Wrapper background={background}>
       <Header>Todo List</Header>
       {isAllDone && <Confetti />}
       <Container>

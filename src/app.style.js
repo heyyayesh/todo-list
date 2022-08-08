@@ -7,6 +7,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   padding: 20px 20px 40px 20px;
   min-height: 100vh;
+  background: ${({ background }) => `url(${background})`};
+  /* background-size: cover; */
 
   @media screen and (max-width: 450px) {
     padding: 0px 0px 30px 0px;
@@ -17,10 +19,11 @@ export const Wrapper = styled.div`
 export const Header = styled.h1`
   font-family: sans-serif;
   margin: 20px;
-  background-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.7);
   width: 100%;
   text-align: center;
   padding: 8px;
+  background-color: #ffffffbb;
 `;
 
 export const Container = styled.div`
@@ -31,11 +34,14 @@ export const Container = styled.div`
   max-width: 700px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   border-radius: 8px;
+  background: rgba(255, 255, 255, 0.8);
 
   @media screen and (max-width: 450px) {
     padding: 16px;
     box-shadow: none;
     flex: 1;
+    margin-bottom: 40px;
+    border-radius: 0;
   }
 `;
 
@@ -56,10 +62,14 @@ export const Input = styled.input`
 export const Button = styled.button`
   font-size: 18px;
   padding: 0 8px;
-  background-color: lightgray;
+  background-color: white;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 5px #c493ff;
+  cursor: pointer;
+
+  :hover {
+    transform: scale(1.1);
+  }
 
   :active {
     transform: scale(0.9);

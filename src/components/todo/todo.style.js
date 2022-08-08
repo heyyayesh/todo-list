@@ -41,7 +41,7 @@ export const Del = styled.button`
   height: 30px;
   width: 100%;
   cursor: pointer;
-  background-color: lightgray;
+  background-color: #2c53ffaa;
   border: none;
   padding: 2px;
   border-radius: 5px;
