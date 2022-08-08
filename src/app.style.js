@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   padding: 20px 20px 40px 20px;
@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 
   @media screen and (max-width: 450px) {
     padding: 0px 0px 30px 0px;
+    justify-content: start;
   }
 `;
 
@@ -26,12 +27,15 @@ export const Container = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  flex: 1;
   width: 100%;
   max-width: 700px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 8px;
 
   @media screen and (max-width: 450px) {
     padding: 16px;
+    box-shadow: none;
+    flex: 1;
   }
 `;
 
@@ -55,7 +59,7 @@ export const Button = styled.button`
   background-color: lightgray;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 5px lightgray;
+  box-shadow: 0 0 5px #c493ff;
 
   :active {
     transform: scale(0.9);

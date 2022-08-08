@@ -24,7 +24,6 @@ export const Controls = styled.div`
   grid-template-columns: 1fr 1fr;
   place-items: center;
   border-radius: 0 0 5px 5px;
-  /* background-color: lightgrey; */
   padding: 3px;
   grid-gap: 16px;
   transition: transform 200ms ease-in-out;
